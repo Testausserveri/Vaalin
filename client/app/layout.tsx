@@ -1,4 +1,4 @@
-import { Providers } from './providers'
+import { Providers } from "./providers"
 import Navbar from "@/components/navbar"
 
 export default function RootLayout({
@@ -7,7 +7,7 @@ export default function RootLayout({
   children: React.ReactNode,
 }) {
   return (
-    <html lang='en' suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body>
         <Providers>
           <Navbar />
