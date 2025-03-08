@@ -1,6 +1,5 @@
 "use client"
 
-import { useEffect, useState } from "react"
 import {
   Box,
   Heading,
@@ -8,25 +7,10 @@ import {
   Text,
   Button,
   Stack,
-  useColorMode,
 } from "@chakra-ui/react"
 import { useTranslation } from "react-i18next"
 
 export default function Hero() {
-  const [count, setCount] = useState(0)
-  const [array, setArray] = useState([])
-
-  const fetchAPI = async () => {
-    const response = await fetch("/api/")
-    let data = await response.json()
-    setArray(data.example)
-    console.log(data.example)
-  }
-
-  useEffect(() => {
-    fetchAPI()
-  }, [])
-
   const { t } = useTranslation()
 
   return (
@@ -62,25 +46,9 @@ export default function Hero() {
               }}>
               {t("buttons.get_started")}
             </Button>
-            <Button onClick={() => setCount((count) => count + 1)}>
-              {t("buttons.count")} {count}
-            </Button>
           </Stack>
-          <ul>
-          {
-            array.map((text, index) => {
-              return(
-              <li key={index}>
-                {text}
-              </li>
-              )
-            })
-          }
-        </ul>
         </Stack>
       </Container>
     </>
   )
 }
-
-export const dynamic = "force-dynamic"
