@@ -4,6 +4,8 @@
     "subtitle": "Luo äänestyksiä yhdistyksesi jäsenille ja anna heidän äänestää erilaisilla äänestysmenetelmillä.",
     "buttons": {
         "get_started": "Aloita",
-        "count": "luku:"
+        "count": "luku:",
+        "login": "Kirjaudu",
+        "signup": "Luo tili"
     }
 }

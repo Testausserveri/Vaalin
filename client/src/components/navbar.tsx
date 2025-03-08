@@ -8,7 +8,6 @@ import {
   Stack,
   useColorModeValue,
   useBreakpointValue,
-  useDisclosure,
   useColorMode,
 } from "@chakra-ui/react"
 import {
@@ -55,7 +54,7 @@ export default function Navbar() {
             {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
           </Button>
           <Button as={"a"} fontSize={"sm"} fontWeight={400} variant={"link"} href={"#"}>
-            Sign In
+            {t("buttons.login")}
           </Button>
           <Button
             as={"a"}
@@ -67,7 +66,7 @@ export default function Navbar() {
             _hover={{
               bg: "pink.300",
             }}>
-            Sign Up
+            {t("buttons.signup")}
           </Button>
         </Stack>
       </Flex>

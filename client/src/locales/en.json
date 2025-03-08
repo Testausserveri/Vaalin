@@ -4,6 +4,8 @@
     "subtitle": "Create polls in your organisation and let members vote using various voting systems.",
     "buttons": {
         "get_started": "Get Started",
-        "count": "count is"
+        "count": "count is",
+        "login": "Sign In",
+        "signup": "Sign Up"
     }
 }
