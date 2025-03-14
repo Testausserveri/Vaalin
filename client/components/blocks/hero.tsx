@@ -12,11 +12,11 @@ interface HeroProps {
 }
 
 const Hero = ({
-  heading = "Vote securely and transparently",
-  description = "Run elections in your organisation and let members vote using various voting systems. Always free and open-source.",
+  heading = "",
+  description = "",
   button = {
-    text: "Create your election",
-    url: "#",
+    text: "",
+    url: "",
   },
 }: HeroProps) => {
   return (

@@ -15,20 +15,30 @@ export default function Home() {
       title: "Vaalin",
     },
     menu: [
-      { title: "Home", url: "#" },
-      { title: "New election", url: "#" },
-      { title: "Vote", url: "#" },
+      { title: t("navbar.home"), url: "#" },
+      { title: t("navbar.new_election"), url: "#" },
+      { title: t("navbar.vote"), url: "#" },
     ],
     auth: {
       language: { text: t("next_language"), url: "#" },
-      login: { text: t("buttons.login"), url: "#" },
-      signup: { text: t("buttons.signup"), url: "#" },
+      login: { text: t("navbar.login"), url: "#" },
+      signup: { text: t("navbar.signup"), url: "#" },
     },
   }
+
+  let heroProps = {
+    heading: t("hero.title"),
+    description: t("hero.subtitle"),
+    button: {
+      text: t("hero.get_started"),
+      url: "#",
+    },
+  }
+
   return (
     <>
       <Navbar {...navbarProps} />
-      <Hero />
+      <Hero {...heroProps} />
     </>
   );
 }

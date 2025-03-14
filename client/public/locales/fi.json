@@ -1,11 +1,15 @@
 {
     "next_language": "🇬🇧",
-    "title": "Äänestä turvallisesti ja läpinäkyvästi",
-    "subtitle": "Luo äänestyksiä yhdistyksesi jäsenille ja anna heidän äänestää erilaisilla äänestysmenetelmillä.",
-    "buttons": {
-        "get_started": "Aloita",
-        "count": "luku:",
+    "navbar" : {
         "login": "Kirjaudu",
-        "signup": "Luo tili"
+        "signup": "Luo tili",
+        "home": "Koti",
+        "new_election": "Uusi äänestys",
+        "vote": "Äänestä"
+    },
+    "hero": {
+        "get_started": "Luo oma äänestys",
+        "title": "Äänestä turvallisesti ja läpinäkyvästi",
+        "subtitle": "Luo äänestyksiä yhdistyksesi jäsenille ja anna heidän äänestää erilaisilla äänestysmenetelmillä. Ilmainen ja avoimen lähdekoodin projekti."
     }
 }

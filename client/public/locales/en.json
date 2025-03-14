@@ -1,11 +1,15 @@
 {
     "next_language": "🇫🇮",
-    "title": "Vote securely and transparently",
-    "subtitle": "Create polls in your organisation and let members vote using various voting systems.",
-    "buttons": {
-        "get_started": "Get Started",
-        "count": "count is",
+    "navbar" : {
         "login": "Sign In",
-        "signup": "Sign Up"
+        "signup": "Sign Up",
+        "home": "Home",
+        "new_election": "New election",
+        "vote": "vote"
+    },
+    "hero": {
+        "get_started": "Create your election",
+        "title": "Vote securely and transparently",
+        "subtitle": "Run elections in your organisation and let members vote using various voting systems. Always free and open-source."
     }
 }
