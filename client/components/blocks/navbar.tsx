@@ -23,7 +23,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
-import i18next from "@/i18n"
+import { useTranslation } from "@/i18n/i18n"
 
 interface MenuItem {
   title: string;
@@ -60,7 +60,7 @@ interface NavbarProps {
   };
 }
 
-const Navbar = ({
+const Navbar = async ({
   logo = {
     url: "",
     emoji: "",
@@ -75,7 +75,9 @@ const Navbar = ({
     login: { text: "", url: "" },
     signup: { text: "", url: "" },
   },
-}: NavbarProps) => {  
+}: NavbarProps, { params }: { params: Promise<{ lng: string }>}) => {
+  const { lng } = await params
+  const { t } = await useTranslation(lng, 'footer')
   return (
     <section className="py-4 px-4 flex justify-center">
       <div className="container">
@@ -95,7 +97,7 @@ const Navbar = ({
             </div>
           </div>
           <div className="flex gap-3">
-            <Button variant="outline" size="sm" onClick={toggleLanguage}>
+            <Button variant="outline" size="sm" i18nKey="languageSwitcher" t={t}>
               {auth.language.text}
             </Button>
             <Button variant="outline" size="sm">

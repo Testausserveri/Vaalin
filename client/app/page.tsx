@@ -1,11 +1,10 @@
-"use client"
-
 import { Hero } from "@/components/blocks/hero"
 import { Navbar } from "@/components/blocks/navbar"
-import { useTranslation } from "react-i18next"
+import { useTranslation } from "../i18n/i18n"
 
-export default function Home() {
-  const { t } = useTranslation()
+export default async function Home({ params }: { params: Promise<{ lng: string }>}) {
+  const { lng } = await params
+  const { t } = await useTranslation(lng, "")
 
   let navbarProps = {
     logo: {
