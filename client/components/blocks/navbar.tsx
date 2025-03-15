@@ -1,4 +1,4 @@
-import { Book, Menu, Sunset, Trees, Zap } from "lucide-react";
+import { Menu } from "lucide-react"
 
 import {
   Accordion,
@@ -6,7 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -14,16 +14,17 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
+} from "@/components/ui/navigation-menu"
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet";
+} from "@/components/ui/sheet"
 
 import i18next from "@/i18n"
+import { changeLanguage } from "@/i18n"
 
 interface MenuItem {
   title: string;
@@ -229,12 +230,9 @@ const SubMenuLink = ({ item }: { item: MenuItem }) => {
   );
 };
 
-function toggleLanguage(){
-  if(i18next.language === "en"){
-    i18next.changeLanguage("fi")
-  } else {
-    i18next.changeLanguage("en")
-  }
+function toggleLanguage() {
+  const newLang = i18next.language === "en" ? "fi" : "en"
+  changeLanguage(newLang)
 }
 
-export { Navbar };
+export { Navbar }
