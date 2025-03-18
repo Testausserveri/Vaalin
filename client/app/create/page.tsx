@@ -1,3 +1,5 @@
+"use client"
+
 import { AppSidebar } from "@/components/app-sidebar"
 import { ChartAreaInteractive } from "@/components/chart-area-interactive"
 import { DataTable } from "@/components/data-table"
@@ -8,9 +10,23 @@ import {
   SidebarProvider,
 } from "@/components/ui/sidebar"
 
+import { useTranslation } from "react-i18next"
+import { useEffect, useState } from "react"
+
 import data from "./data.json"
 
 export default function Page() {
+  const { t } = useTranslation()
+  const [ isClient, setIsClient ] = useState(false)
+
+  useEffect(() => {
+    setIsClient(true)
+  })
+
+  if (!isClient) {
+    return <div></div>
+  }
+
   return (
     <SidebarProvider
       style={
