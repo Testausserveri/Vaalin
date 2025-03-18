@@ -1,6 +1,7 @@
 "use client"
 
 import { Hero } from "@/components/blocks/hero"
+import NavbarWrapper from "@/components/blocks/navbarwrapper"
 import { useTranslation } from "react-i18next"
 import { useEffect, useState } from "react"
 
@@ -29,6 +30,7 @@ export default function Home() {
 
   return (
     <>
+      <NavbarWrapper />
       <Hero {...heroProps} />
     </>
   )
