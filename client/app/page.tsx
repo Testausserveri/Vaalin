@@ -19,7 +19,7 @@ export default function Home() {
         description: t("hero.subtitle"),
         button: {
           text: t("hero.get_started"),
-          url: "/create",
+          url: "/election",
         },
       }
     : null

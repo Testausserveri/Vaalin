@@ -28,7 +28,7 @@ export default function NavbarWrapper() {
         },
         menu: [
           { title: t("navbar.home"), url: "/" },
-          { title: t("navbar.new_election"), url: "/create" },
+          { title: t("navbar.new_election"), url: "/election" },
           { title: t("navbar.vote"), url: "/vote" },
         ],
         auth: {
