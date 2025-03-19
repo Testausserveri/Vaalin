@@ -376,14 +376,14 @@ export function DataTable({
 
   return (
     <Tabs
-      defaultValue="outline"
+      defaultValue="all"
       className="w-full flex-col justify-start gap-6"
     >
       <div className="flex items-center justify-between px-4 lg:px-6">
         <Label htmlFor="view-selector" className="sr-only">
           View
         </Label>
-        <Select defaultValue="outline">
+        <Select defaultValue="all">
           <SelectTrigger
             className="flex w-fit @4xl/main:hidden"
             size="sm"
@@ -392,21 +392,25 @@ export function DataTable({
             <SelectValue placeholder="Select a view" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="outline">Outline</SelectItem>
-            <SelectItem value="past-performance">Past Performance</SelectItem>
-            <SelectItem value="key-personnel">Key Personnel</SelectItem>
-            <SelectItem value="focus-documents">Focus Documents</SelectItem>
+            <SelectItem value="all">All elections</SelectItem>
+            <SelectItem value="finished">Finished elections</SelectItem>
+            <SelectItem value="open">Open elections</SelectItem>
+            <SelectItem value="created">Created elections</SelectItem>
           </SelectContent>
         </Select>
         <TabsList className="**:data-[slot=badge]:bg-muted-foreground/30 hidden **:data-[slot=badge]:size-5 **:data-[slot=badge]:rounded-full **:data-[slot=badge]:px-1 @4xl/main:flex">
-          <TabsTrigger value="outline">Outline</TabsTrigger>
-          <TabsTrigger value="past-performance">
-            Past Performance <Badge variant="secondary">3</Badge>
+          <TabsTrigger value="all">
+            All elections <Badge variant="secondary">6</Badge>
           </TabsTrigger>
-          <TabsTrigger value="key-personnel">
-            Key Personnel <Badge variant="secondary">2</Badge>
+          <TabsTrigger value="finished">
+            Finished elections <Badge variant="secondary">4</Badge>
           </TabsTrigger>
-          <TabsTrigger value="focus-documents">Focus Documents</TabsTrigger>
+          <TabsTrigger value="open">
+            Open elections <Badge variant="secondary">1</Badge>
+          </TabsTrigger>
+          <TabsTrigger value="created">
+            Created elections <Badge variant="secondary">1</Badge>
+          </TabsTrigger>
         </TabsList>
         <div className="flex items-center gap-2">
           <Button variant="outline" size="sm">
@@ -416,7 +420,7 @@ export function DataTable({
         </div>
       </div>
       <TabsContent
-        value="outline"
+        value="all"
         className="relative flex flex-col gap-4 overflow-auto px-4 lg:px-6"
       >
         <div className="overflow-hidden rounded-lg border">
@@ -549,16 +553,16 @@ export function DataTable({
         </div>
       </TabsContent>
       <TabsContent
-        value="past-performance"
+        value="finished"
         className="flex flex-col px-4 lg:px-6"
       >
         <div className="aspect-video w-full flex-1 rounded-lg border border-dashed"></div>
       </TabsContent>
-      <TabsContent value="key-personnel" className="flex flex-col px-4 lg:px-6">
+      <TabsContent value="open" className="flex flex-col px-4 lg:px-6">
         <div className="aspect-video w-full flex-1 rounded-lg border border-dashed"></div>
       </TabsContent>
       <TabsContent
-        value="focus-documents"
+        value="created"
         className="flex flex-col px-4 lg:px-6"
       >
         <div className="aspect-video w-full flex-1 rounded-lg border border-dashed"></div>
