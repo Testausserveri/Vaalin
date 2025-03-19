@@ -52,6 +52,12 @@ const data = {
       url: "#",
       icon: IconAddressBook,
     }
+  ],
+  navSecondary: [
+    {
+      title: "Change language",
+      onClick: () => {console.log("hi")},
+    }
   ]
 }
 
@@ -75,6 +81,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
+        <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
