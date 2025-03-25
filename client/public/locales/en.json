@@ -38,6 +38,11 @@
     "table": {
         "selected": "{0} of {1} row(s) selected",
         "rowspp": "Rows per page",
-        "pageno": "Page {0} of {1}"
+        "pageno": "Page {0} of {1}",
+        "nores": "No elections yet. Create one!",
+        "open": "Open menu",
+        "edit": "Edit",
+        "copy": "Copy",
+        "delete": "Delete"
     }
 }

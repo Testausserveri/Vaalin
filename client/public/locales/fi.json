@@ -38,6 +38,15 @@
     "table": {
         "selected": "{0}/{1} riviä valittu",
         "rowspp": "Rivejä per sivu",
-        "pageno": "Sivu {0}/{1}"
+        "pageno": "Sivu {0}/{1}",
+        "nores": "Et ole vielä luonut yhtään äänestystä",
+        "first": "Go to first page",
+        "previous": "Go to previous page",
+        "next": "Go to next page",
+        "last": "Go to last page",
+        "open": "Avaa valikko",
+        "edit": "Muokkaa",
+        "copy": "Kopioi",
+        "delete": "Poista"
     }
 }

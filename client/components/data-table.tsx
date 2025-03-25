@@ -190,6 +190,15 @@ export function DataTable({
     selected: string,
     rowspp: string,
     pageno: string,
+    nores: string,
+    first: string,
+    previous: string,
+    next: string,
+    last: string,
+    open: string,
+    edit: string,
+    copy: string,
+    delete: string,
   }
 }) {
   const [data, setData] = React.useState(() => initialData)
@@ -348,14 +357,14 @@ export function DataTable({
               size="icon"
             >
               <IconDotsVertical />
-              <span className="sr-only">Open menu</span>
+              <span className="sr-only">{tableAdmin.open}</span>
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-32">
-            <DropdownMenuItem>Edit</DropdownMenuItem>
-            <DropdownMenuItem>Make a copy</DropdownMenuItem>
+            <DropdownMenuItem>{tableAdmin.edit}</DropdownMenuItem>
+            <DropdownMenuItem>{tableAdmin.copy}</DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
+            <DropdownMenuItem variant="destructive">{tableAdmin.delete}</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       ),
@@ -490,7 +499,7 @@ export function DataTable({
                       colSpan={columns.length}
                       className="h-24 text-center"
                     >
-                      No results.
+                      {tableAdmin.nores}
                     </TableCell>
                   </TableRow>
                 )}
@@ -545,7 +554,7 @@ export function DataTable({
                 onClick={() => table.setPageIndex(0)}
                 disabled={!table.getCanPreviousPage()}
               >
-                <span className="sr-only">Go to first page</span>
+                <span className="sr-only">{tableAdmin.first}</span>
                 <IconChevronsLeft />
               </Button>
               <Button
@@ -555,7 +564,7 @@ export function DataTable({
                 onClick={() => table.previousPage()}
                 disabled={!table.getCanPreviousPage()}
               >
-                <span className="sr-only">Go to previous page</span>
+                <span className="sr-only">{tableAdmin.previous}</span>
                 <IconChevronLeft />
               </Button>
               <Button
@@ -565,7 +574,7 @@ export function DataTable({
                 onClick={() => table.nextPage()}
                 disabled={!table.getCanNextPage()}
               >
-                <span className="sr-only">Go to next page</span>
+                <span className="sr-only">{tableAdmin.next}</span>
                 <IconChevronRight />
               </Button>
               <Button
@@ -575,7 +584,7 @@ export function DataTable({
                 onClick={() => table.setPageIndex(table.getPageCount() - 1)}
                 disabled={!table.getCanNextPage()}
               >
-                <span className="sr-only">Go to last page</span>
+                <span className="sr-only">{tableAdmin.last}</span>
                 <IconChevronsRight />
               </Button>
             </div>

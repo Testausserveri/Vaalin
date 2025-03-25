@@ -90,6 +90,11 @@ export default function Page() {
       selected: t("table.selected"),
       rowspp: t("table.rowspp"),
       pageno: t("table.pageno"),
+      nores: t("table.nores"),
+      open: t("table.open"),
+      edit: t("table.edit"),
+      copy: t("table.copy"),
+      delete: t("table.delete"),
     }
   }
 
