@@ -35,33 +35,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 
-const data = {
-  user: {
-    name: "Organisation Ry",
-    email: "org@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
-  navMain: [
-    {
-      title: "Elections",
-      url: "#",
-      icon: IconCheckbox,
-    },
-    {
-      title: "Membership list",
-      url: "#",
-      icon: IconAddressBook,
-    }
-  ],
-  navSecondary: [
-    {
-      title: "Change language",
-      onClick: () => {console.log("hi")},
-    }
-  ]
-}
-
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function AppSidebar({data, ...props }: {data: any} & React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="offcanvas" {...props}>
       <SidebarHeader>
@@ -80,7 +54,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
+        <NavMain top={data.top} items={data.navMain} />
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>

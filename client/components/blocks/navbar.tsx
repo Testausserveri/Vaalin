@@ -23,8 +23,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 
-import i18next from "@/i18n"
-import { changeLanguage } from "@/i18n"
+import { toggleLanguage } from "@/i18n"
 
 interface MenuItem {
   title: string;
@@ -229,10 +228,5 @@ const SubMenuLink = ({ item }: { item: MenuItem }) => {
     </a>
   );
 };
-
-function toggleLanguage() {
-  const newLang = i18next.language === "en" ? "fi" : "en"
-  changeLanguage(newLang)
-}
 
 export { Navbar }

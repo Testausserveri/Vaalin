@@ -11,5 +11,10 @@
         "get_started": "Create your election",
         "title": "Vote securely and transparently",
         "subtitle": "Run elections in your organisation and let members vote using various voting systems. Always free and open-source."
+    },
+    "sidebar": {
+        "new_election": "New election",
+        "elections": "Elections",
+        "membership_list": "Membership list"
     }
 }

@@ -8,9 +8,14 @@ import {
   SidebarInset,
   SidebarProvider,
 } from "@/components/ui/sidebar"
+import {
+  IconAddressBook,
+  IconCheckbox,
+} from "@tabler/icons-react"
 
 import { useTranslation } from "react-i18next"
 import { useEffect, useState } from "react"
+import { toggleLanguage } from "@/i18n"
 
 import data from "./data.json"
 
@@ -26,6 +31,36 @@ export default function Page() {
     return <div></div>
   }
 
+  const sidebarData = {
+    user: {
+      name: "Organisation Ry",
+      email: "org@example.com",
+      avatar: "/avatars/shadcn.jpg",
+    },
+    top: {
+      title: t("sidebar.new_election"),
+      url: "#",
+    },
+    navMain: [
+      {
+        title: t("sidebar.elections"),
+        url: "#",
+        icon: IconCheckbox,
+      },
+      {
+        title: t("sidebar.membership_list"),
+        url: "#",
+        icon: IconAddressBook,
+      }
+    ],
+    navSecondary: [
+      {
+        title: t("next_language"),
+        onClick: toggleLanguage,
+      }
+    ]
+  }
+
   return (
     <SidebarProvider
       style={
@@ -35,7 +70,7 @@ export default function Page() {
         } as React.CSSProperties
       }
     >
-      <AppSidebar variant="inset" />
+      <AppSidebar data={sidebarData} variant="inset" />
       <SidebarInset>
         <SiteHeader />
         <div className="flex flex-1 flex-col">

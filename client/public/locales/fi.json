@@ -11,5 +11,10 @@
         "get_started": "Luo oma äänestys",
         "title": "Äänestä turvallisesti ja läpinäkyvästi",
         "subtitle": "Luo äänestyksiä yhdistyksesi jäsenille ja anna heidän äänestää erilaisilla äänestysmenetelmillä. Ilmainen ja avoimen lähdekoodin projekti."
+    },
+    "sidebar": {
+        "new_election": "Uusi äänestys",
+        "elections": "Äänestykset",
+        "membership_list": "Yhdistyksen jäsenet"
     }
 }

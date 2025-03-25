@@ -41,4 +41,9 @@ if (typeof window !== "undefined") {
   }
 }
 
+export const toggleLanguage = () => {
+  const newLang = i18next.language === "en" ? "fi" : "en"
+  changeLanguage(newLang)
+}
+
 export default i18next;
