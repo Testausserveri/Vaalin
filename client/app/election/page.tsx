@@ -61,6 +61,38 @@ export default function Page() {
     ]
   }
 
+  const header = t("elections.header")
+
+  const tableData = {
+    cards: {
+      no_elections: t("elections.no_elections"),
+      no_stv: t("elections.no_stv"),
+      no_voters: t("elections.no_voters"),
+      no_cast: t("elections.no_cast"),
+    },
+    tabs: {
+      all: t("elections.tabs_all"),
+      finished: t("elections.tabs_finished"),
+      open: t("elections.tabs_open"),
+      created: t("elections.tabs_created"),
+      new: t("sidebar.new_election")
+    },
+    headers: {
+      name: t("elections.headers_name"),
+      system: t("elections.headers_system"),
+      group: t("elections.headers_group"),
+      status: t("elections.headers_status"),
+      eligible: t("elections.headers_eligible"),
+      cast: t("elections.headers_cast"),
+      winner: t("elections.headers_winner"),
+    },
+    admin: {
+      selected: t("table.selected"),
+      rowspp: t("table.rowspp"),
+      pageno: t("table.pageno"),
+    }
+  }
+
   return (
     <SidebarProvider
       style={
@@ -72,12 +104,12 @@ export default function Page() {
     >
       <AppSidebar data={sidebarData} variant="inset" />
       <SidebarInset>
-        <SiteHeader />
+        <SiteHeader headerText={header} />
         <div className="flex flex-1 flex-col">
           <div className="@container/main flex flex-1 flex-col gap-2">
             <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
-              <SectionCards />
-              <DataTable data={data} />
+              <SectionCards text={tableData.cards} />
+              <DataTable tabTitles={tableData.tabs} columnHeaders={tableData.headers} tableAdmin={tableData.admin} data={data} />
             </div>
           </div>
         </div>

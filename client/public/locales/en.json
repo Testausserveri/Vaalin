@@ -16,5 +16,28 @@
         "new_election": "New election",
         "elections": "Elections",
         "membership_list": "Membership list"
+    },
+    "elections": {
+        "header": "Elections",
+        "no_elections": "Number of elections",
+        "no_stv": "Number of STV elections held",
+        "no_voters": "Number of voters",
+        "no_cast": "Number of votes cast",
+        "tabs_all": "All elections",
+        "tabs_finished": "Finished elections",
+        "tabs_open": "Open elections",
+        "tabs_created": "Created elections",
+        "headers_name": "Name",
+        "headers_system": "Election system",
+        "headers_group": "Group",
+        "headers_status": "Status",
+        "headers_eligible": "Eligible",
+        "headers_cast": "Votes cast",
+        "headers_winner": "Winner"
+    },
+    "table": {
+        "selected": "{0} of {1} row(s) selected",
+        "rowspp": "Rows per page",
+        "pageno": "Page {0} of {1}"
     }
 }

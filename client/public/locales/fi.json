@@ -16,5 +16,28 @@
         "new_election": "Uusi äänestys",
         "elections": "Äänestykset",
         "membership_list": "Yhdistyksen jäsenet"
+    },
+    "elections": {
+        "header": "Äänestykset",
+        "no_elections": "Vaaleja",
+        "no_stv": "Siirtovaaleja",
+        "no_voters": "Äänestäjien määrä",
+        "no_cast": "Yksittäisiä ääniä yhteensä",
+        "tabs_all": "Kaikki äänestykset",
+        "tabs_finished": "Päättyneet äänestykset",
+        "tabs_open": "Avoimet äänestykset",
+        "tabs_created": "Uudet äänestykset",
+        "headers_name": "Nimi",
+        "headers_system": "Vaalimenetelmä",
+        "headers_group": "Ryhmä",
+        "headers_status": "Tila",
+        "headers_eligible": "Äänioikeutettuja",
+        "headers_cast": "Ääniä",
+        "headers_winner": "Voittaja"
+    },
+    "table": {
+        "selected": "{0}/{1} riviä valittu",
+        "rowspp": "Rivejä per sivu",
+        "pageno": "Sivu {0}/{1}"
     }
 }

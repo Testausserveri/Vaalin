@@ -138,152 +138,6 @@ function DragHandle({ id }: { id: number }) {
   )
 }
 
-const columns: ColumnDef<z.infer<typeof schema>>[] = [
-  {
-    id: "drag",
-    header: () => null,
-    cell: ({ row }) => <DragHandle id={row.original.id} />,
-  },
-  {
-    id: "select",
-    header: ({ table }) => (
-      <div className="flex items-center justify-center">
-        <Checkbox
-          checked={
-            table.getIsAllPageRowsSelected() ||
-            (table.getIsSomePageRowsSelected() && "indeterminate")
-          }
-          onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-          aria-label="Select all"
-        />
-      </div>
-    ),
-    cell: ({ row }) => (
-      <div className="flex items-center justify-center">
-        <Checkbox
-          checked={row.getIsSelected()}
-          onCheckedChange={(value) => row.toggleSelected(!!value)}
-          aria-label="Select row"
-        />
-      </div>
-    ),
-    enableSorting: false,
-    enableHiding: false,
-  },
-  {
-    accessorKey: "name",
-    header: "Name",
-    cell: ({ row }) => {
-      return <TableCellViewer item={row.original} />
-    },
-    enableHiding: false,
-  },
-  {
-    accessorKey: "type",
-    header: "Election system",
-    cell: ({ row }) => (
-      <div className="w-32">
-        <Badge variant="outline" className="text-muted-foreground px-1.5">
-          {row.original.type}
-        </Badge>
-      </div>
-    ),
-  },
-  {
-    accessorKey: "group",
-    header: "Group",
-    cell: ({ row }) => {
-      return (
-        <>
-          <Label htmlFor={`${row.original.id}-group`} className="sr-only">
-            Group
-          </Label>
-          <Select defaultValue={row.original.group}>
-            <SelectTrigger
-              className="w-52 **:data-[slot=select-value]:block **:data-[slot=select-value]:truncate"
-              size="sm"
-              id={`${row.original.id}-group`}
-            >
-              <SelectValue placeholder="Assign group" />
-            </SelectTrigger>
-            <SelectContent align="end">
-              <SelectItem value="Spring meeting 2025">
-                Spring meeting 2025
-              </SelectItem>
-              <SelectItem value="Autumn meeting 2024">
-                Autumn meeting 2024
-              </SelectItem>
-            </SelectContent>
-          </Select>
-        </>
-      )
-    },
-  },
-  {
-    accessorKey: "status",
-    header: "Status",
-    cell: ({ row }) => (
-      <Badge variant="outline" className="text-muted-foreground px-1.5">
-        {row.original.status === "Finished" ? (
-          <IconCircleCheckFilled className="fill-green-500 dark:fill-green-400" />
-        ) : row.original.status === "Open" ? (
-          <IconCircleChevronsRightFilled className="fill-yellow-500 dark:fill-yellow-400" />
-        ) : (
-          <IconLoader />
-        )}
-        {row.original.status}
-      </Badge>
-    ),
-  },
-  {
-    accessorKey: "eligible",
-    header: "Eligible",
-    cell: ({ row }) => {
-      return <p>{row.original.eligible}</p>
-    },
-    enableHiding: false,
-  },
-  {
-    accessorKey: "votes_cast",
-    header: "Votes cast",
-    cell: ({ row }) => {
-      return <p>{row.original.votes_cast}</p>
-    },
-    enableHiding: false,
-  },
-  {
-    accessorKey: "winner",
-    header: "Winner",
-    cell: ({ row }) => {
-      return <p>{row.original.winner}</p>
-    },
-    enableHiding: false,
-  },
-  {
-    id: "actions",
-    cell: () => (
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button
-            variant="ghost"
-            className="data-[state=open]:bg-muted text-muted-foreground flex size-8"
-            size="icon"
-          >
-            <IconDotsVertical />
-            <span className="sr-only">Open menu</span>
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-32">
-          <DropdownMenuItem>Edit</DropdownMenuItem>
-          <DropdownMenuItem>Make a copy</DropdownMenuItem>
-          <DropdownMenuSeparator />
-          <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-    ),
-  },
-]
-
 function DraggableRow({ row }: { row: Row<z.infer<typeof schema>> }) {
   const { transform, transition, setNodeRef, isDragging } = useSortable({
     id: row.original.id,
@@ -311,8 +165,32 @@ function DraggableRow({ row }: { row: Row<z.infer<typeof schema>> }) {
 
 export function DataTable({
   data: initialData,
+  tabTitles,
+  columnHeaders,
+  tableAdmin,
 }: {
-  data: z.infer<typeof schema>[]
+  data: z.infer<typeof schema>[],
+  tabTitles: {
+    all: string,
+    finished: string,
+    open: string,
+    created: string,
+    new: string,
+  },
+  columnHeaders: {
+    name: string,
+    system: string,
+    group: string,
+    status: string,
+    eligible: string,
+    cast: string,
+    winner: string,
+  },
+  tableAdmin: {
+    selected: string,
+    rowspp: string,
+    pageno: string,
+  }
 }) {
   const [data, setData] = React.useState(() => initialData)
   const [rowSelection, setRowSelection] = React.useState({})
@@ -337,6 +215,152 @@ export function DataTable({
     () => data?.map(({ id }) => id) || [],
     [data]
   )
+
+  const columns: ColumnDef<z.infer<typeof schema>>[] = [
+    {
+      id: "drag",
+      header: () => null,
+      cell: ({ row }) => <DragHandle id={row.original.id} />,
+    },
+    {
+      id: "select",
+      header: ({ table }) => (
+        <div className="flex items-center justify-center">
+          <Checkbox
+            checked={
+              table.getIsAllPageRowsSelected() ||
+              (table.getIsSomePageRowsSelected() && "indeterminate")
+            }
+            onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+            aria-label="Select all"
+          />
+        </div>
+      ),
+      cell: ({ row }) => (
+        <div className="flex items-center justify-center">
+          <Checkbox
+            checked={row.getIsSelected()}
+            onCheckedChange={(value) => row.toggleSelected(!!value)}
+            aria-label="Select row"
+          />
+        </div>
+      ),
+      enableSorting: false,
+      enableHiding: false,
+    },
+    {
+      accessorKey: "name",
+      header: columnHeaders.name,
+      cell: ({ row }) => {
+        return <TableCellViewer item={row.original} />
+      },
+      enableHiding: false,
+    },
+    {
+      accessorKey: "type",
+      header: columnHeaders.system,
+      cell: ({ row }) => (
+        <div className="w-32">
+          <Badge variant="outline" className="text-muted-foreground px-1.5">
+            {row.original.type}
+          </Badge>
+        </div>
+      ),
+    },
+    {
+      accessorKey: "group",
+      header: columnHeaders.group,
+      cell: ({ row }) => {
+        return (
+          <>
+            <Label htmlFor={`${row.original.id}-group`} className="sr-only">
+              Group
+            </Label>
+            <Select defaultValue={row.original.group}>
+              <SelectTrigger
+                className="w-52 **:data-[slot=select-value]:block **:data-[slot=select-value]:truncate"
+                size="sm"
+                id={`${row.original.id}-group`}
+              >
+                <SelectValue placeholder="Assign group" />
+              </SelectTrigger>
+              <SelectContent align="end">
+                <SelectItem value="Spring meeting 2025">
+                  Spring meeting 2025
+                </SelectItem>
+                <SelectItem value="Autumn meeting 2024">
+                  Autumn meeting 2024
+                </SelectItem>
+              </SelectContent>
+            </Select>
+          </>
+        )
+      },
+    },
+    {
+      accessorKey: "status",
+      header: columnHeaders.status,
+      cell: ({ row }) => (
+        <Badge variant="outline" className="text-muted-foreground px-1.5">
+          {row.original.status === "Finished" ? (
+            <IconCircleCheckFilled className="fill-green-500 dark:fill-green-400" />
+          ) : row.original.status === "Open" ? (
+            <IconCircleChevronsRightFilled className="fill-yellow-500 dark:fill-yellow-400" />
+          ) : (
+            <IconLoader />
+          )}
+          {row.original.status}
+        </Badge>
+      ),
+    },
+    {
+      accessorKey: "eligible",
+      header: columnHeaders.eligible,
+      cell: ({ row }) => {
+        return <p>{row.original.eligible}</p>
+      },
+      enableHiding: false,
+    },
+    {
+      accessorKey: "votes_cast",
+      header: columnHeaders.cast,
+      cell: ({ row }) => {
+        return <p>{row.original.votes_cast}</p>
+      },
+      enableHiding: false,
+    },
+    {
+      accessorKey: "winner",
+      header: columnHeaders.winner,
+      cell: ({ row }) => {
+        return <p>{row.original.winner}</p>
+      },
+      enableHiding: false,
+    },
+    {
+      id: "actions",
+      cell: () => (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button
+              variant="ghost"
+              className="data-[state=open]:bg-muted text-muted-foreground flex size-8"
+              size="icon"
+            >
+              <IconDotsVertical />
+              <span className="sr-only">Open menu</span>
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end" className="w-32">
+            <DropdownMenuItem>Edit</DropdownMenuItem>
+            <DropdownMenuItem>Make a copy</DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      ),
+    },
+  ]
 
   const table = useReactTable({
     data,
@@ -392,30 +416,30 @@ export function DataTable({
             <SelectValue placeholder="Select a view" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">All elections</SelectItem>
-            <SelectItem value="finished">Finished elections</SelectItem>
-            <SelectItem value="open">Open elections</SelectItem>
-            <SelectItem value="created">Created elections</SelectItem>
+            <SelectItem value="all">{tabTitles.all}</SelectItem>
+            <SelectItem value="finished">{tabTitles.finished}</SelectItem>
+            <SelectItem value="open">{tabTitles.open}</SelectItem>
+            <SelectItem value="created">{tabTitles.created}</SelectItem>
           </SelectContent>
         </Select>
         <TabsList className="**:data-[slot=badge]:bg-muted-foreground/30 hidden **:data-[slot=badge]:size-5 **:data-[slot=badge]:rounded-full **:data-[slot=badge]:px-1 @4xl/main:flex">
           <TabsTrigger value="all">
-            All elections <Badge variant="secondary">6</Badge>
+            {tabTitles.all} <Badge variant="secondary">6</Badge>
           </TabsTrigger>
           <TabsTrigger value="finished">
-            Finished elections <Badge variant="secondary">4</Badge>
+            {tabTitles.finished} <Badge variant="secondary">4</Badge>
           </TabsTrigger>
           <TabsTrigger value="open">
-            Open elections <Badge variant="secondary">1</Badge>
+            {tabTitles.open} <Badge variant="secondary">1</Badge>
           </TabsTrigger>
           <TabsTrigger value="created">
-            Created elections <Badge variant="secondary">1</Badge>
+            {tabTitles.created} <Badge variant="secondary">1</Badge>
           </TabsTrigger>
         </TabsList>
         <div className="flex items-center gap-2">
           <Button variant="outline" size="sm">
             <IconPlus />
-            <span className="hidden lg:inline">New election</span>
+            <span className="hidden lg:inline">{tabTitles.new}</span>
           </Button>
         </div>
       </div>
@@ -476,13 +500,16 @@ export function DataTable({
         </div>
         <div className="flex items-center justify-between px-4">
           <div className="text-muted-foreground hidden flex-1 text-sm lg:flex">
-            {table.getFilteredSelectedRowModel().rows.length} of{" "}
-            {table.getFilteredRowModel().rows.length} row(s) selected.
+            {
+              tableAdmin.selected
+              .replace("{0}", table.getFilteredSelectedRowModel().rows.length.toString())
+              .replace("{1}", table.getFilteredRowModel().rows.length.toString())
+            }
           </div>
           <div className="flex w-full items-center gap-8 lg:w-fit">
             <div className="hidden items-center gap-2 lg:flex">
               <Label htmlFor="rows-per-page" className="text-sm font-medium">
-                Rows per page
+                {tableAdmin.rowspp}
               </Label>
               <Select
                 value={`${table.getState().pagination.pageSize}`}
@@ -505,8 +532,11 @@ export function DataTable({
               </Select>
             </div>
             <div className="flex w-fit items-center justify-center text-sm font-medium">
-              Page {table.getState().pagination.pageIndex + 1} of{" "}
-              {table.getPageCount()}
+              {
+                tableAdmin.pageno
+                .replace("{0}", (table.getState().pagination.pageIndex + 1).toString())
+                .replace("{1}", table.getPageCount().toString())
+              }
             </div>
             <div className="ml-auto flex items-center gap-2 lg:ml-0">
               <Button
